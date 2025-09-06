@@ -53,7 +53,7 @@ export function Home() {
                 }}/>
             </div>
             <div className="mainBody">
-                <div>Work: {formatTime(workTime)}</div>
+                <div>Work: {formatTime(workTime)}</div><br/>
                 <div>Break: {formatTime(breakTime)}</div>
             </div>
         </div>
