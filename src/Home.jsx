@@ -9,10 +9,16 @@ export function Home() {
 
     const { w, setW, r, setR, count, setCount, breakDuration, setBreakDuration } = useContext(PomodoroContext);
 
+    
+    
     // local state for timers
     const [workTime, setWorkTime] = useState(count);
     const [breakTime, setBreakTime] = useState(breakDuration);
-
+    
+    // progress
+    const workProgress = (workTime / count) * 100; // goes from 100 → 0
+    const breakProgress = (1 - breakTime / breakDuration) * 100; // goes from 0 → 100
+    
     // countdown for work
     useEffect(() => {
         if (workTime <= 0) return; // stop at 0
@@ -48,18 +54,35 @@ export function Home() {
         <div className="divCont">
             <div className="headingDev">
                 <span className="heading">Pomodoro</span>
-                <img className="imgSettings" src="/assets/menu.svg" alt="Settings" onClick={()=>{
+                <img className="imgSettings" src="/assets/menu.svg" alt="Settings" onClick={() => {
                     navigate('/setting')
-                }}/>
+                }} />
             </div>
             <div className="mainBody">
-                {/* <div>Work: {formatTime(workTime)}</div><br/>
+                {/* <div>Work: {formatTime(workTime)}</div><br>
                 <div>Break: {formatTime(breakTime)}</div> */}
                 <div className='pillBody'>
-
-                    <div className='redPartOfPill'></div>
-                    <div className='textInside'>{formatTime(workTime)}</div>
+                    {workTime > 0 ? (
+                        <>
+                            <div
+                                className='redPartOfPill'
+                                style={{ height: `${(workTime / count) * 100}%` }}
+                            />
+                            <div className='textInside'>{formatTime(workTime)}</div>
+                        </>
+                    ) : breakTime > 0 ? (
+                        <>
+                            <div
+                                className='redPartOfPill'
+                                style={{ height: `${(1 - breakTime / breakDuration) * 100}%` }}
+                            />
+                            <div className='textInside'>{formatTime(breakTime)}</div>
+                        </>
+                    ) : (
+                        <div>Reload!</div>
+                    )}
                 </div>
+
                 <div className='circleBody'>
                     <img className='playPauseIcons' src="/assets/pause.svg" alt="0" />
                     <img className='playPauseIcons' src="/assets/play.svg" alt="II" />
