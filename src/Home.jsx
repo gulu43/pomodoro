@@ -41,7 +41,7 @@ export function Home() {
         let totalSeconds = Math.floor(ms / 1000);
         let minutes = Math.floor(totalSeconds / 60);
         let seconds = totalSeconds % 60;
-        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        return `${String(minutes).padStart(2, '0')}\n${String(seconds).padStart(2, '0')}`;
     };
 
     return (
@@ -56,8 +56,15 @@ export function Home() {
                 {/* <div>Work: {formatTime(workTime)}</div><br/>
                 <div>Break: {formatTime(breakTime)}</div> */}
                 <div className='pillBody'>
-                    <div className='ok'>ok</div>
+
+                    <div className='redPartOfPill'></div>
+                    <div className='textInside'>{formatTime(workTime)}</div>
                 </div>
+                <div className='circleBody'>
+                    <img className='playPauseIcons' src="/assets/pause.svg" alt="0" />
+                    <img className='playPauseIcons' src="/assets/play.svg" alt="II" />
+                </div>
+
             </div>
         </div>
     );

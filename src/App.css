@@ -32,6 +32,8 @@
 
 .mainBody {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
     align-items: center;
     height: 90%;
@@ -124,8 +126,8 @@
 
 /* ----------------------------- */
 /*  */
-.pillBody{
-    border :2px solid red;
+.pillBody {
+    /* border: 2px solid red; */
     background-color: black;
     border-radius: 70px;
     /* width: 70%;
@@ -137,8 +139,56 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
 
 }
-.textInside{
-    font-size: 180%;
+.redPartOfPill{
+     /* border: 2px solid red; */
+    background-color: red;
+    border-radius: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80%; 
+    /* change height */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.textInside {
+    font-size: 350%;
+    font-weight: bold;
+    font-family: sans-serif ;
+    color: #fff;
+    white-space: pre-line;
+    z-index: 1;
+}
+
+.circleBody {
+    /* border: 2px solid #fcc500; */
+    background-color: #fcc500;
+    border-radius: 100px;
+    /* width: 70%;
+    height: 60vh; */
+    width: 100px;
+    height: 100px;
+    /* position: relative; */
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.playPauseIcons{
+    width: 25px;
+    height: 25px;
+    /* font-size: 200%; */
+    /* font-family: sans-serif; */
+    /* font-weight: bold; */
+    /* color: black; */
 }
