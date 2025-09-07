@@ -4,45 +4,39 @@ import { PomodoroContext } from './App';
 import './App.css';
 
 export function Home() {
-
     const navigate = useNavigate();
 
     const { w, setW, r, setR, count, setCount, breakDuration, setBreakDuration } = useContext(PomodoroContext);
 
-    
-    
-    // local state for timers
     const [workTime, setWorkTime] = useState(count);
     const [breakTime, setBreakTime] = useState(breakDuration);
-    
-    // progress
-    const workProgress = (workTime / count) * 100; // goes from 100 → 0
-    const breakProgress = (1 - breakTime / breakDuration) * 100; // goes from 0 → 100
-    
+    const [isRunning, setIsRunning] = useState(true); //  new state
+
     // countdown for work
     useEffect(() => {
-        if (workTime <= 0) return; // stop at 0
+        if (!isRunning) return;  // pause check
+        if (workTime <= 0) return;
 
         const interval = setInterval(() => {
             setWorkTime((prev) => prev - 1000);
         }, 1000);
 
-        return () => clearInterval(interval); // cleanup
-    }, [workTime]);
+        return () => clearInterval(interval);
+    }, [workTime, isRunning]);
 
     // countdown for break
     useEffect(() => {
-        if (workTime > 0) return; // only start after work ends
-        if (breakTime <= 0) return; // stop when break is finished
+        if (!isRunning) return;  // pause check
+        if (workTime > 0) return;
+        if (breakTime <= 0) return;
 
         const interval = setInterval(() => {
             setBreakTime((prev) => prev - 1000);
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [workTime, breakTime]);
+    }, [workTime, breakTime, isRunning]);
 
-    // formatting function
     const formatTime = (ms) => {
         let totalSeconds = Math.floor(ms / 1000);
         let minutes = Math.floor(totalSeconds / 60);
@@ -54,13 +48,15 @@ export function Home() {
         <div className="divCont">
             <div className="headingDev">
                 <span className="heading">Pomodoro</span>
-                <img className="imgSettings" src="/assets/menu.svg" alt="Settings" onClick={() => {
-                    navigate('/setting')
-                }} />
+                <img
+                    className="imgSettings"
+                    src="/assets/menu.svg"
+                    alt="Settings"
+                    onClick={() => navigate('/setting')}
+                />
             </div>
+
             <div className="mainBody">
-                {/* <div>Work: {formatTime(workTime)}</div><br>
-                <div>Break: {formatTime(breakTime)}</div> */}
                 <div className='pillBody'>
                     {workTime > 0 ? (
                         <>
@@ -83,11 +79,17 @@ export function Home() {
                     )}
                 </div>
 
-                <div className='circleBody'>
-                    <img className='playPauseIcons' src="/assets/pause.svg" alt="0" />
-                    <img className='playPauseIcons' src="/assets/play.svg" alt="II" />
+                {/* Play/Pause Button */}
+                <div
+                    className='circleBody'
+                    onClick={() => setIsRunning((prev) => !prev)} // toggle state
+                >
+                    {isRunning ? (
+                        <img className='playPauseIcons' src="/assets/pause.svg" alt="Pause" />
+                    ) : (
+                        <img className='playPauseIcons' src="/assets/play.svg" alt="Play" />
+                    )}
                 </div>
-
             </div>
         </div>
     );

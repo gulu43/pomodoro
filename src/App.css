@@ -174,6 +174,8 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    transition: height 0.9s linear; 
+
 }
 .textInside {
     font-size: 350%;
