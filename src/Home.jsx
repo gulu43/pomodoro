@@ -53,8 +53,11 @@ export function Home() {
                 }}/>
             </div>
             <div className="mainBody">
-                <div>Work: {formatTime(workTime)}</div><br/>
-                <div>Break: {formatTime(breakTime)}</div>
+                {/* <div>Work: {formatTime(workTime)}</div><br/>
+                <div>Break: {formatTime(breakTime)}</div> */}
+                <div className='pillBody'>
+                    <div className='ok'>ok</div>
+                </div>
             </div>
         </div>
     );
