@@ -70,6 +70,7 @@
     /* full screen height */
     background: #1f1f1f;
     /* dark background */
+    position: relative;
 }
 
 /* the card itself */
@@ -110,8 +111,9 @@
 }
 
 .settings-container button {
-    background: #007bff;
-    color: white;
+    background: #fcc500;
+    color: black;
+    margin-bottom: 10px;
     border: none;
     padding: 10px 18px;
     border-radius: 8px;
@@ -122,6 +124,20 @@
 
 .settings-container button:hover {
     background: #0056b3;
+}
+.linki {
+  position: absolute;
+  padding: 5px;
+  bottom: 0px; 
+  left: 50%;
+  transform: translateX(-50%);
+  color: whitesmoke;
+  text-decoration: none;
+  font-size: 90%;
+}
+
+.linki:hover {
+  text-decoration: underline;
 }
 
 /* ----------------------------- */

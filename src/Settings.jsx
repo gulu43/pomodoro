@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 export function Settings() {
-        const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const { w, setW, r, setR, setCount, setBreakDuration } = useContext(PomodoroContext);
 
@@ -20,11 +20,11 @@ export function Settings() {
             <div className="settings-container">
                 <div className='setNav'>
                     <div className='heading'>Settings</div>
-                    <div className='backBtn' onClick={()=>{
+                    <div className='backBtn' onClick={() => {
                         navigate('/home')
                     }}>Back</div>
                 </div>
-                
+
                 <label>Work Duration (minutes):</label>
                 <input type="number" value={w} onChange={(e) => setW(Number(e.target.value))} />
 
@@ -37,7 +37,15 @@ export function Settings() {
                 }}>
                     Save
                 </button>
-                
+
+                <a
+                    className="linki"
+                    href="https://www.linkedin.com/in/gulamnabi-kagathala"
+                    target="_blank"
+                >
+                    LinkedIn
+                </a>
+
             </div>
         </div>
 
